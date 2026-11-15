@@ -1,1 +1,245 @@
-hallo
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Media Belajar Pantun – Kelas IX</title>
+<style>
+:root{--bg:#0d0713;--bg2:#1a0b1f;--red:#ff2a4d;--red2:#ff6b84;--wh:#fff;--mut:#d9cfe0;--glass:rgba(255,255,255,.08);--bd:rgba(255,255,255,.22);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:radial-gradient(ellipse at 20% 0,#2a0a24 0,var(--bg) 55%) fixed;color:var(--wh);font-family:"Nunito","Trebuchet MS",Verdana,sans-serif;line-height:1.6;min-height:100vh;overflow-x:hidden}
+#stars{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:0 16px 40px}
+h1,h2,h3{font-family:"Baloo 2","Comic Sans MS","Trebuchet MS",sans-serif;line-height:1.15;margin:0 0 .5em}
+/* hero */
+.hero{position:relative;min-height:70vh;display:flex;align-items:center;justify-content:center;padding:36px 0;overflow:hidden}
+.deco{position:absolute;width:clamp(90px,20vw,170px);filter:drop-shadow(0 0 14px var(--red));will-change:transform;animation:fl 7s ease-in-out infinite}
+.d1{left:2%;top:10%}.d2{right:2%;bottom:8%;animation-delay:-3.5s;animation-duration:9s}
+@keyframes fl{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-22px) rotate(5deg)}}
+.glass{background:var(--glass);border:1px solid var(--bd);border-radius:24px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 40px rgba(0,0,0,.35),0 0 24px rgba(255,42,77,.18)}
+.hero .glass{position:relative;max-width:640px;padding:clamp(22px,5vw,44px);text-align:center}
+.hero h1{font-size:clamp(2.6rem,10vw,5rem);text-shadow:0 0 12px var(--red),0 0 32px rgba(255,42,77,.6)}
+.hero p{margin:.3em 0;color:var(--mut)}
+.badge{display:inline-block;margin-top:12px;padding:6px 16px;border:1px solid var(--red);border-radius:99px;color:var(--wh);box-shadow:0 0 12px rgba(255,42,77,.5)}
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;margin:0 -16px 20px;padding:10px 16px;background:rgba(13,7,19,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--bd)}
+nav div{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+nav button{flex:none;font:inherit;font-weight:700;color:var(--wh);background:var(--glass);border:1px solid var(--bd);border-radius:99px;padding:8px 16px;cursor:pointer;transition:.2s}
+nav button:hover{border-color:var(--red)}
+nav button[aria-selected=true]{background:var(--red);border-color:var(--red);box-shadow:0 0 16px var(--red)}
+button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid var(--wh);outline-offset:2px}
+/* sections */
+section{display:none}section.on{display:block}
+.card{padding:clamp(18px,4vw,30px);margin-bottom:18px}
+h2{font-size:clamp(1.6rem,5vw,2.3rem);color:var(--wh);text-shadow:0 0 14px rgba(255,42,77,.7)}
+h3{color:var(--red2);font-size:1.25rem}
+ul{padding-left:1.2em;margin:.4em 0}li{margin:.35em 0}
+.btn{display:inline-block;font:inherit;font-weight:800;text-decoration:none;color:#fff;background:linear-gradient(135deg,var(--red),#c4153a);border:0;border-radius:16px;padding:13px 24px;cursor:pointer;box-shadow:0 0 18px rgba(255,42,77,.55);transition:transform .15s}
+.btn:hover{transform:translateY(-2px) scale(1.03)}
+.btn.alt{background:transparent;border:2px solid var(--wh);box-shadow:none}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.pv{font-size:1.1rem;font-weight:700;line-height:1.9}
+.pv .s{color:var(--wh)}.pv .i{color:var(--red2)}
+.tag{display:inline-block;font-size:.8rem;font-weight:800;padding:2px 10px;border-radius:99px;margin-right:6px;background:var(--wh);color:#8a0f2b}
+.tag.r{background:var(--red);color:#fff}
+.jenis{cursor:pointer;text-align:left;font:inherit;color:inherit;width:100%;padding:20px;border:1px solid var(--bd);border-radius:20px;background:var(--glass);transition:.2s}
+.jenis:hover,.jenis[aria-expanded=true]{border-color:var(--red);box-shadow:0 0 18px rgba(255,42,77,.4)}
+.jenis .emo{font-size:2rem}.jenis .ex{display:none;margin-top:10px;padding-top:10px;border-top:1px dashed var(--bd);white-space:pre-line}
+.jenis[aria-expanded=true] .ex{display:block}
+/* game */
+#pool,#ans{display:flex;flex-direction:column;gap:8px;min-height:60px;padding:10px;border-radius:16px;border:2px dashed var(--bd)}
+.line{font:inherit;text-align:left;color:#fff;background:rgba(255,42,77,.2);border:1px solid var(--red);border-radius:12px;padding:10px 14px;cursor:pointer}
+.line:hover{background:rgba(255,42,77,.4)}
+#ans .line{background:rgba(255,255,255,.14);border-color:var(--wh)}
+#msg{font-weight:800;margin:10px 0;min-height:1.6em}
+.ok{color:#8dffb4}.no{color:var(--red2)}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.video{text-align:center;padding:40px 20px}.big{font-size:3.5rem}
+textarea{width:100%;font:inherit;color:#fff;background:rgba(0,0,0,.35);border:1px solid var(--bd);border-radius:12px;padding:10px;min-height:80px;resize:vertical}
+label{font-weight:700;display:block;margin:14px 0 6px}
+footer{text-align:center;color:var(--mut);font-size:.9rem;margin-top:24px}
+@media(prefers-reduced-motion:reduce){.deco{animation:none}*{transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="stars" aria-hidden="true"></canvas>
+<div class="wrap">
+
+<header class="hero">
+  <svg class="deco d1" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 6l11 27 29 3-22 19 7 29-25-15-25 15 7-29L10 36l29-3z" fill="#fff" stroke="#ff2a4d" stroke-width="3" stroke-linejoin="round"/></svg>
+  <svg class="deco d2" viewBox="0 0 100 100" aria-hidden="true"><rect x="22" y="14" width="56" height="72" rx="8" fill="#ff2a4d"/><rect x="14" y="10" width="72" height="10" rx="5" fill="#fff"/><rect x="14" y="80" width="72" height="10" rx="5" fill="#fff"/><g stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="M34 34h32M34 46h32M34 58h32M34 70h20"/></g></svg>
+  <div class="glass">
+    <h1>Pantun</h1>
+    <p><strong>Jenis-Jenis Pantun</strong></p>
+    <p>Bahasa Indonesia · Kelas IX</p>
+    <p>SMPN 1 Bandar Seikijang</p>
+    <p>Guru: Wirda Apriyanti, S.Pd</p>
+    <span class="badge">Ayo belajar sambil bermain!</span>
+  </div>
+</header>
+
+<nav aria-label="Menu utama"><div role="tablist" id="tabs"></div></nav>
+
+<main>
+<!-- 1 PEMBUKA -->
+<section id="pembuka" class="on">
+  <div class="glass card"><h2>A. Keyakinan kelas</h2>
+    <ul><li>Membersihkan sampah di kelas</li><li>Merapikan alat tulis</li><li>Merapikan pakaian</li></ul></div>
+  <div class="glass card"><h2>B. Absensi</h2><p>Klik tombol di bawah untuk mengisi daftar hadir hari ini.</p>
+    <a class="btn" href="https://forms.gle/HpiCRsNRUWa9fMW99" target="_blank" rel="noopener">Isi absensi</a></div>
+  <div class="glass card"><h2>C. Apersepsi</h2>
+    <p>Minggu lalu kita telah mempelajari <strong>konsep dasar pantun</strong>.</p>
+    <p>Hari ini kita akan belajar materi <strong>jenis-jenis pantun</strong>.</p></div>
+  <div class="glass card"><h2>D. Tujuan pembelajaran</h2><p>Murid mampu:</p>
+    <ul><li>Menganalisis unsur-unsur intrinsik pantun yang disimak;</li>
+    <li>Menginterpretasi informasi dari pantun yang dibaca untuk mengungkap kepedulian dan/atau pendapat pro/kontra;</li>
+    <li>Mengungkapkan ungkapan kepedulian dari pantun; dan</li>
+    <li>Menulis ungkapan kepedulian dalam teks pantun menggunakan kosakata denotatif, konotatif, dan kiasan.</li></ul></div>
+  <div class="glass card"><h2>E. Penilaian dimensi profil lulusan</h2>
+    <div class="grid">
+      <div><h3>Penalaran kritis</h3><p>Mampu berpikir secara logis, analitis, dan reflektif dalam menghadapi berbagai persoalan.</p></div>
+      <div><h3>Kolaborasi</h3><p>Memiliki kemampuan gotong royong, bekerja sama, serta berbagi peran secara efektif dengan orang lain.</p></div>
+      <div><h3>Komunikasi</h3><p>Mampu berkomunikasi secara intrapribadi maupun antarpribadi, lisan maupun tulisan, dengan moda verbal maupun nonverbal.</p></div>
+    </div></div>
+</section>
+
+<!-- 2 MATERI -->
+<section id="materi">
+  <div class="glass card"><h2>Materi dan ciri pantun</h2>
+    <p><strong>Pantun</strong> adalah puisi lama Indonesia yang terdiri dari empat baris dalam satu bait. Dua baris pertama disebut <span class="tag">sampiran</span> dan dua baris terakhir disebut <span class="tag r">isi</span>.</p>
+    <ul><li><strong>Sampiran</strong>: pengantar, biasanya tentang alam; tidak berhubungan langsung dengan isi.</li>
+    <li><strong>Isi</strong>: pesan atau maksud yang ingin disampaikan.</li>
+    <li><strong>Rima a-b-a-b</strong>: bunyi akhir baris 1 sama dengan baris 3, baris 2 sama dengan baris 4.</li>
+    <li>Setiap baris terdiri dari 8–12 suku kata (umumnya 4–6 kata).</li></ul></div>
+  <div class="glass card"><h3>Contoh visual</h3>
+    <div class="pv">
+      <div class="s">Buah cempedak di luar pagar, <span class="tag">a</span></div>
+      <div class="s">Ambil galah tolong jolokkan; <span class="tag">b</span></div>
+      <div class="i">Saya budak baru belajar, <span class="tag r">a</span></div>
+      <div class="i">Kalau salah tolong tunjukkan. <span class="tag r">b</span></div>
+    </div>
+    <p>Putih = sampiran · Merah muda = isi · Huruf a/b = bunyi akhir (rima).</p></div>
+</section>
+
+<!-- 3 JENIS -->
+<section id="jenis">
+  <div class="glass card"><h2>Jenis-jenis pantun</h2><p>Klik kartu untuk membuka contohnya.</p>
+    <div class="grid">
+      <button class="jenis" aria-expanded="false"><div class="emo">💡</div><h3>Pantun nasihat</h3>Berisi nasihat dan pesan kebaikan.<div class="ex">Pisang emas dibawa berlayar,
+Masak sebiji di atas peti;
+Hutang emas dapat dibayar,
+Hutang budi dibawa mati.</div></button>
+      <button class="jenis" aria-expanded="false"><div class="emo">😄</div><h3>Pantun jenaka</h3>Berisi hal lucu untuk menghibur.<div class="ex">Ikan kakap ikan tenggiri,
+Ikan hiu di pinggir kali;
+Kucing mengeong minta nasi,
+Tikus tertawa geli sekali.</div></button>
+      <button class="jenis" aria-expanded="false"><div class="emo">❓</div><h3>Pantun teka-teki</h3>Berisi tebakan yang harus dijawab.<div class="ex">Buah mangga buah kedondong,
+Dimakan anak di bawah pohon;
+Binatang apa bertanduk dua,
+Berkaki empat suka merumput?
+(Jawab: sapi atau kambing)</div></button>
+      <button class="jenis" aria-expanded="false"><div class="emo">🧒</div><h3>Pantun anak</h3>Berisi hal ceria dan sukacita anak.<div class="ex">Bangun pagi cuci muka,
+Gosok gigi mandi bersih;
+Hormat ibu dan bapak guru,
+Anak baik disayang semua.</div></button>
+    </div></div>
+  <div class="glass card"><h2>Permainan: susun pantun</h2>
+    <p>Klik baris-baris acak ini secara berurutan: dua baris sampiran dulu, lalu dua baris isi.</p>
+    <div id="pool"></div>
+    <h3 style="margin-top:14px">Susunanmu</h3><div id="ans"></div>
+    <div id="msg" role="status"></div>
+    <div class="row"><button class="btn" id="cek">Cek jawaban</button><button class="btn alt" id="ulang">Acak ulang</button></div></div>
+</section>
+
+<!-- 4 VIDEO -->
+<section id="video"><div class="glass card video"><div class="big">🎬</div><h2>Video pembelajaran</h2>
+  <p>Simak video tentang pantun, lalu catat hal penting yang kamu temukan.</p>
+  <a class="btn" href="https://drive.google.com/file/d/1F5nb-aQkrybyUUZwasTXtv76Py67Aw8v/view?usp=sharing" target="_blank" rel="noopener">Tonton video</a></div></section>
+
+<!-- 5 MEMBUAT -->
+<section id="buat"><div class="glass card video"><div class="big">✍️</div><h2>Membuat pantun</h2>
+  <p>Tulis pantun kepedulianmu sendiri dengan kosakata denotatif, konotatif, dan kiasan.</p>
+  <a class="btn" href="https://pantunku.com/" target="_blank" rel="noopener">Buka Pantunku</a></div></section>
+
+<!-- 6 LKM & KUIS -->
+<section id="lkm">
+  <div class="glass card video"><div class="big">📄</div><h2>Lembar kerja murid (LKM)</h2>
+    <p>Kerjakan LKM secara berkelompok dan bagi tugas dengan temanmu.</p>
+    <a class="btn" href="https://drive.google.com/file/d/1qg7fu2f9KO0qn-s9VzLBWsGXxidIIwiu/view?usp=sharing" target="_blank" rel="noopener">Buka LKM</a></div>
+  <div class="glass card video"><div class="big">🏆</div><h2>Kuis</h2>
+    <p>Uji pemahamanmu lewat kuis seru!</p>
+    <a class="btn" href="https://wordwall.net/resource/123925386?wwmethod=link" target="_blank" rel="noopener">Mulai kuis</a></div>
+</section>
+
+<!-- 7 REFLEKSI -->
+<section id="refleksi"><div class="glass card"><h2>Refleksi</h2>
+  <label for="r1">a. Apakah hari ini kamu menemukan pengetahuan baru?</label><textarea id="r1"></textarea>
+  <label for="r2">b. Adakah kesulitan dalam memahami materi hari ini? Sebutkan.</label><textarea id="r2"></textarea>
+  <label for="r3">c. Apa saran untuk materi selanjutnya?</label><textarea id="r3"></textarea>
+  <div class="row"><button class="btn" id="kirim">Simpan refleksi</button>
+  <a class="btn alt" href="https://pantunku.com/" target="_blank" rel="noopener">Buka Pantunku</a></div>
+  <div id="rmsg" role="status" style="margin-top:12px;font-weight:800"></div></div></section>
+</main>
+<footer>Media pembelajaran Pantun · SMPN 1 Bandar Seikijang · Guru: Wirda Apriyanti, S.Pd</footer>
+</div>
+
+<script>
+// Navigasi
+var names=[["pembuka","Pembuka"],["materi","Materi & Ciri"],["jenis","Jenis & Game"],["video","Video"],["buat","Membuat Pantun"],["lkm","LKM & Kuis"],["refleksi","Refleksi"]];
+var tabs=document.getElementById("tabs");
+function show(id){
+  names.forEach(function(n){document.getElementById(n[0]).classList.toggle("on",n[0]===id)});
+  [].forEach.call(tabs.children,function(b){b.setAttribute("aria-selected",b.dataset.id===id)});
+  var nav=document.querySelector("nav");window.scrollTo({top:nav.offsetTop-4,behavior:"smooth"});
+}
+names.forEach(function(n,i){var b=document.createElement("button");b.textContent=(i+1)+". "+n[1];b.dataset.id=n[0];b.setAttribute("role","tab");b.onclick=function(){show(n[0])};tabs.appendChild(b)});
+[].forEach.call(tabs.children,function(b,i){b.setAttribute("aria-selected",i===0)});
+// Kartu jenis
+[].forEach.call(document.querySelectorAll(".jenis"),function(c){c.onclick=function(){c.setAttribute("aria-expanded",c.getAttribute("aria-expanded")!=="true")}});
+// Game
+var P=["Buah cempedak di luar pagar,","Ambil galah tolong jolokkan;","Saya budak baru belajar,","Kalau salah tolong tunjukkan."];
+var pool=document.getElementById("pool"),ans=document.getElementById("ans"),msg=document.getElementById("msg");
+function mk(t,to){var b=document.createElement("button");b.className="line";b.textContent=t;b.onclick=function(){to(b)};return b}
+function reset(){
+  pool.innerHTML="";ans.innerHTML="";msg.textContent="";msg.className="";
+  var a=P.slice();do{a.sort(function(){return Math.random()-.5})}while(a.join()===P.join());
+  a.forEach(add);
+}
+function add(t){pool.appendChild(mk(t,function(b){b.remove();ans.appendChild(mk(t,function(x){x.remove();add(t)}))}))}
+document.getElementById("cek").onclick=function(){
+  var cur=[].map.call(ans.children,function(c){return c.textContent});
+  if(cur.length<4){msg.className="no";msg.textContent="Susun keempat baris dulu ya!";return}
+  if(cur.join()===P.join()){msg.className="ok";msg.textContent="Hebat! Sampiran di baris 1–2, isi di baris 3–4, rima a-b-a-b. 🎉"}
+  else{msg.className="no";msg.textContent="Belum tepat. Ingat: sampiran dulu, lalu isi, dan bunyi akhir bersilang a-b-a-b."}
+};
+document.getElementById("ulang").onclick=reset;reset();
+// Refleksi
+document.getElementById("kirim").onclick=function(){
+  var m=document.getElementById("rmsg");m.textContent="Terima kasih sudah berefleksi! Tunjukkan jawabanmu kepada guru. 🌟";
+  try{localStorage.setItem("refleksi",JSON.stringify([r1.value,r2.value,r3.value]))}catch(e){}
+};
+// Bintang ringan
+(function(){
+  var c=document.getElementById("stars"),x=c.getContext("2d"),W,H,S=[],run=true;
+  var n=matchMedia("(max-width:700px)").matches?36:70,dpr=Math.min(devicePixelRatio||1,1.5);
+  var reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+  function size(){W=innerWidth;H=innerHeight;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0)}
+  size();addEventListener("resize",size);
+  for(var i=0;i<n;i++)S.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.8+.6,v:Math.random()*.25+.05,p:Math.random()*6.3,red:Math.random()<.35});
+  function draw(t){
+    x.clearRect(0,0,W,H);
+    S.forEach(function(s){
+      s.y-=s.v;if(s.y<-5){s.y=H+5;s.x=Math.random()*W}
+      var a=.45+.45*Math.sin(t/700+s.p);
+      x.globalAlpha=a;x.fillStyle=s.red?"#ff2a4d":"#fff";x.shadowColor=s.red?"#ff2a4d":"#fff";x.shadowBlur=8;
+      x.beginPath();x.arc(s.x,s.y,s.r,0,6.283);x.fill();
+    });
+    if(run&&!reduce)requestAnimationFrame(draw);
+  }
+  document.addEventListener("visibilitychange",function(){run=!document.hidden;if(run)requestAnimationFrame(draw)});
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
